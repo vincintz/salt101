@@ -1,4 +1,5 @@
 ca:
+  - self_signed: True
   - path: /etc/pki/
   - cert_file: /etc/pki/ca.crt
   - key_file: /etc/pki/ca.key
@@ -9,7 +10,7 @@ www:
 
 openldap:
   rootdn: 'cn=root,dc=example,dc=com'
-  rootpw: '{SSHA}5++yqs7UNz22kAYf7jboAmklhavVXahK'
+  rootpw: '{SSHA}d47vM4+elPmoYWVmnfOcmIqrGmloEyBz'
   base: 'dc=example,dc=com'
   user: 'openldap'
   group: 'openldap'

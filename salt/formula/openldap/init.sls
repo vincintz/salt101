@@ -1,15 +1,33 @@
-{% set ldap_uri = salt['pillar.get']('openldap:uri', False) %}
-{% set rootpw = salt['pillar.get']('openldap:rootpw', False) %}
+openldap:
+  pkg.installed:
+    - pkgs:
+      - openldap
+      - openldap-servers
+      - openldap-clients
 
-{% if ldap_uri or rootpw %}
-include:
-    {#  Only install LDAP-client if pillar[openldap:uri] is set #}
-    {% if ldap_uri %}
-    - openldap.client
-    {% endif %}
+/etc/sysconfig/slapd:
+  file.managed:
+    - source: salt://openldap/files/slapd.jinja
+    - template: jinja
+    - makedirs: True
+    - show_changes: True
+    - require:
+      - pkg: httpd
 
-    {#- Install the LDAP-server if pillar[openldap:rootpw] is set #}
-    {% if rootpw %}
-    - openldap.server
-    {% endif %}
-{% endif %}
+/etc/openldap/ldap.conf:
+  file.managed:
+    - source: salt://openldap/files/ldap.conf.jinja
+    - template: jinja
+    - makedirs: True
+    - show_changes: True
+    - require:
+      - pkg: httpd
+
+openldap_service:
+  service:
+    - name: slapd
+    - running
+    - enable: True
+    - require:
+      - pkg: openldap
+

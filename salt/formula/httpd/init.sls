@@ -9,13 +9,13 @@ mod_ssl:
     - require:
       - pkg: httpd
 
-httpd:
+httpd_service:
   service:
+    - name: httpd
     - running
     - enable: True
     - require:
       - pkg: mod_ssl
-
 
 web_root:
   file.managed:

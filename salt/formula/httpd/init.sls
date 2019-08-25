@@ -2,18 +2,21 @@ httpd:
   pkg:
     - installed
     - name: httpd
-  service:
-    - running
-    - enable: True
-    - require:
-      - pkg: httpd
 
 mod_ssl:
   pkg:
     - installed
     - require:
       - pkg: httpd
-  
+
+httpd:
+  service:
+    - running
+    - enable: True
+    - require:
+      - pkg: mod_ssl
+
+
 web_root:
   file.managed:
     - name: /var/www/html/site/index.html

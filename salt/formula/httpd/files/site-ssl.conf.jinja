@@ -1,0 +1,11 @@
+<VirtualHost *:443>
+  SSLEngine On
+  SSLCertificateFile {{ salt['pillar.get']('ca:cert_file') }}
+  SSLCertificateKeyFile {{ salt['pillar.get']('ca:key_file') }}
+
+  ServerAdmin admin@example.com
+  DocumentRoot "{{ salt['pillar.get']('www:root_dir') }}"
+  ServerName localhost
+  ErrorLog {{ salt['pillar.get']('www:error_log') }}
+
+</VirtualHost>

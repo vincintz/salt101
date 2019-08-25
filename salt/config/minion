@@ -1,9 +1,8 @@
-master: localhost
 file_client: local
 
 file_roots:
   base:
-    - /srv/salt/states
+    - /srv/salt/formula
 
 pillar_roots:
   base:

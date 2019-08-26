@@ -16,8 +16,6 @@ web_root:
     - template: jinja
     - makedirs: True
     - show_changes: True
-    - require:
-      - pkg: mod_ssl
 
 site_conf:
   file.managed:
@@ -26,13 +24,9 @@ site_conf:
     - template: jinja
     - makedirs: True
     - show_changes: True
-    - require:
-      - file: mod_ssl
 
 httpd_service:
   service:
     - name: httpd
     - running
     - enable: True
-    - require:
-      - pkg: site_conf

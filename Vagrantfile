@@ -1,8 +1,10 @@
 # Configurations
-HTTP_PORT=80
-HTTPS_PORT=443
-LDAP_PORT=389
-LDAPS_PORT=636
+HTTP_PORT = 80
+HTTPS_PORT = 443
+LDAP_PORT = 389
+LDAPS_PORT = 636
+TOMCAT_PORT = 8080
+TOMCATS_PORT = 8443
 
 Vagrant.require_version ">= 1.8.0"
 Vagrant.configure("2") do |config|
@@ -17,6 +19,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: HTTPS_PORT, host: HTTPS_PORT
   config.vm.network "forwarded_port", guest: LDAP_PORT, host: LDAP_PORT
   config.vm.network "forwarded_port", guest: LDAPS_PORT, host: LDAPS_PORT
+  config.vm.network "forwarded_port", guest: TOMCAT_PORT, host: TOMCAT_PORT
+  config.vm.network "forwarded_port", guest: TOMCATS_PORT, host: TOMCATS_PORT
 
   config.vm.provision "shell", inline: <<-SHELL
     # Make sure OS is updated

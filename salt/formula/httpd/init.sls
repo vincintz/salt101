@@ -9,14 +9,6 @@ mod_ssl:
     - require:
       - pkg: httpd
 
-httpd_service:
-  service:
-    - name: httpd
-    - running
-    - enable: True
-    - require:
-      - pkg: mod_ssl
-
 web_root:
   file.managed:
     - name: /var/www/html/site/index.html
@@ -25,7 +17,7 @@ web_root:
     - makedirs: True
     - show_changes: True
     - require:
-      - pkg: httpd
+      - pkg: mod_ssl
 
 site_conf:
   file.managed:
@@ -35,4 +27,12 @@ site_conf:
     - makedirs: True
     - show_changes: True
     - require:
-      - file: web_root
+      - file: mod_ssl
+
+httpd_service:
+  service:
+    - name: httpd
+    - running
+    - enable: True
+    - require:
+      - pkg: site_conf

@@ -5,3 +5,5 @@ base_packages:
       - git
       - vim-enhanced
       - htop
+      - zip
+      - unzip

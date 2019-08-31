@@ -23,17 +23,17 @@ tomcat8_config:
     - makedirs: True
     - show_changes: True
 
-tomcat8_permission:
-  file.directory:
-    - name: /opt/tomcat8
-    - user: vagrant
-    - group: vagrant
-    - recurse:
-      - user
-      - group
-
 # TODO: Sort out user issue for non-vagrant install
 # suggestion: create user: appuser
+# tomcat8_permission:
+#   file.directory:
+#     - name: /opt/tomcat8
+#     - user: vagrant
+#     - group: vagrant
+#     - recurse:
+#       - user
+#       - group
+# 
 # tomcat8_started:
 #   cmd.run:
 #     - name: '/opt/tomcat8/apache-tomcat-8.5.45/bin/catalina.sh start'

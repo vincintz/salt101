@@ -2,7 +2,7 @@ base:
   '*':
     - base
     - nacl
-    - ca-certs
+    - ca-selfsigned
     - openldap
     - java
     - httpd

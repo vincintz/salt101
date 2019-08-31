@@ -1,4 +1,4 @@
 include:
-  - httpd.binaries
+  - httpd.package
   - httpd.ssl-conf
   - httpd.service

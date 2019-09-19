@@ -15,10 +15,10 @@ Vagrant.configure("2") do |config|
     vb.name = "salt101"
   end
 
-  config.vm.network "forwarded_port", guest: HTTP_PORT, host: HTTP_PORT
-  config.vm.network "forwarded_port", guest: HTTPS_PORT, host: HTTPS_PORT
-  config.vm.network "forwarded_port", guest: LDAP_PORT, host: LDAP_PORT
-  config.vm.network "forwarded_port", guest: LDAPS_PORT, host: LDAPS_PORT
+  config.vm.network "forwarded_port", guest: HTTP_PORT, host: 1080
+  config.vm.network "forwarded_port", guest: HTTPS_PORT, host: 1443
+  config.vm.network "forwarded_port", guest: LDAP_PORT, host: 1339
+  config.vm.network "forwarded_port", guest: LDAPS_PORT, host: 1236
   config.vm.network "forwarded_port", guest: TOMCAT_PORT, host: TOMCAT_PORT
   config.vm.network "forwarded_port", guest: TOMCATS_PORT, host: TOMCATS_PORT
 
@@ -38,6 +38,6 @@ Vagrant.configure("2") do |config|
     ln -sf /vagrant/salt/formula /srv/salt/formula
     ln -sf /vagrant/salt/pillars /srv/salt/pillars
     # Apply state
-    salt-call --local state.apply
+    # salt-call --local state.apply
   SHELL
 end

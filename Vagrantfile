@@ -1,8 +1,8 @@
-# Configurations
-HTTP_PORT = 80
-HTTPS_PORT = 443
-LDAP_PORT = 389
-LDAPS_PORT = 636
+# Mapped ports
+HTTP_PORT = 1080
+HTTPS_PORT = 1443
+LDAP_PORT = 1389
+LDAPS_PORT = 1636
 TOMCAT_PORT = 8080
 TOMCATS_PORT = 8443
 
@@ -15,12 +15,12 @@ Vagrant.configure("2") do |config|
     vb.name = "salt101"
   end
 
-  config.vm.network "forwarded_port", guest: HTTP_PORT, host: 1080
-  config.vm.network "forwarded_port", guest: HTTPS_PORT, host: 1443
-  config.vm.network "forwarded_port", guest: LDAP_PORT, host: 1339
-  config.vm.network "forwarded_port", guest: LDAPS_PORT, host: 1236
-  config.vm.network "forwarded_port", guest: TOMCAT_PORT, host: TOMCAT_PORT
-  config.vm.network "forwarded_port", guest: TOMCATS_PORT, host: TOMCATS_PORT
+  config.vm.network "forwarded_port", guest: 80, host: HTTP_PORT
+  config.vm.network "forwarded_port", guest: 443, host: HTTPS_PORT
+  config.vm.network "forwarded_port", guest: 339, host: LDAP_PORT
+  config.vm.network "forwarded_port", guest: 686, host: LDAPS_PORT
+  config.vm.network "forwarded_port", guest: 8080, host: TOMCAT_PORT
+  config.vm.network "forwarded_port", guest: 8443, host: TOMCATS_PORT
 
   config.vm.provision "shell", inline: <<-SHELL
     # Make sure OS is updated
